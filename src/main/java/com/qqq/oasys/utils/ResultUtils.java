@@ -18,6 +18,7 @@ public class ResultUtils {
         ResultData<T> resultData = new ResultData<>();
         resultData.setData(data);
         resultData.setSuccess(true);
+        resultData.setMessage("操作成功！");
         resultData.setStatusCode(StatusCode.SUCCESS);
         return resultData;
     }

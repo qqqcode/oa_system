@@ -1,5 +1,17 @@
 spring:
   application:
     name: oasys
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.115.55.168:3306/oasys?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    cache: false
+    charset: UTF-8
+    content-type: text/html
+    check-template-location: true
 server:
   port: 8080
