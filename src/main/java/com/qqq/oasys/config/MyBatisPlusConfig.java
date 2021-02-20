@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
-//@Configuration
+@Configuration
 //@MapperScan("com.qqq.oasys.mapper")
 public class MyBatisPlusConfig {
 

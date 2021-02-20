@@ -1,4 +1,4 @@
-package com.qqq.oasys.utils;
+package com.qqq.oasys.common.utils;
 
 import com.qqq.oasys.common.code.StatusCode;
 import com.qqq.oasys.common.result.ResultBase;

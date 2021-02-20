@@ -3,9 +3,8 @@ package com.qqq.oasys.controller.user;
 
 import com.qqq.oasys.common.result.ResultData;
 import com.qqq.oasys.mapper.UserMapper;
-import com.qqq.oasys.model.dao.UserDao;
-import com.qqq.oasys.model.entity.User;
-import com.qqq.oasys.utils.ResultUtils;
+import com.qqq.oasys.model.user.User;
+import com.qqq.oasys.common.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +17,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
-    private UserDao userDao;
+    private UserMapper userDao;
 
     @RequestMapping("/userlogmanage")
     public ResultData<String> userlogmanage() {
