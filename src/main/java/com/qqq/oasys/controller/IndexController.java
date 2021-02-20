@@ -57,32 +57,32 @@ public class IndexController {
         }
         Long userId = Long.parseLong(session.getAttribute("userId") + "");
         User user = userMapper.getOne(userId);
-        systemMenuService.findMenuSys(request,user);
-        logger.info("{}用户登录",user.getUserName());
+        systemMenuService.findMenuSys(request, user);
+        logger.info("{}用户登录", user.getUserName());
 
-        List<ScheduleList> aboutmenotice = daymanageService.aboutmeschedule(userId);
-        for (ScheduleList scheduleList : aboutmenotice) {
-            if(scheduleList.getIsreminded()!=null&&!scheduleList.getIsreminded()){
-                logger.info("{}",scheduleList.getStartTime());
+        List<ScheduleList> aboutMyNotice = daymanageService.aboutmeschedule(userId);
+        for (ScheduleList scheduleList : aboutMyNotice) {
+            if (scheduleList.getIsreminded() != null && !scheduleList.getIsreminded()) {
+                logger.info("{}", scheduleList.getStartTime());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");//24小时制
                 String start = simpleDateFormat.format(scheduleList.getStartTime());
                 String now = simpleDateFormat.format(new Date());
                 try {
                     long now2 = simpleDateFormat.parse(now).getTime();
                     long start2 = simpleDateFormat.parse(start).getTime();
-                    long cha = start2-now2;
-                    if(0<cha && cha <86400000){
-                        NoticesList remindnotices = new NoticesList();
-                        remindnotices.setTypeId(11l);
-                        remindnotices.setStatusId(15l);
-                        remindnotices.setTitle("您有一个日程即将开始");
-                        remindnotices.setUrl("/daycalendar");
-                        remindnotices.setUserId(userId);
-                        remindnotices.setNoticeTime(new Date());
+                    long cha = start2 - now2;
+                    if (0 < cha && cha < 86400000) {
+                        NoticesList remindNotices = new NoticesList();
+                        remindNotices.setTypeId(11l);
+                        remindNotices.setStatusId(15l);
+                        remindNotices.setTitle("您有一个日程即将开始");
+                        remindNotices.setUrl("/daycalendar");
+                        remindNotices.setUserId(userId);
+                        remindNotices.setNoticeTime(new Date());
 
-                        NoticesList remindnoticeok = informService.save(remindnotices);
+                        NoticesList remindNoticeOk = informService.save(remindNotices);
 
-                        informRelationService.save(new NoticeUserRelation(remindnoticeok, user, false));
+                        informRelationService.save(new NoticeUserRelation(remindNoticeOk, user, false));
 
                         scheduleList.setIsreminded(true);
                         scheduleListMapper.save(scheduleList);
@@ -97,7 +97,7 @@ public class IndexController {
         model.addAttribute("mail", 6);
         model.addAttribute("task", 6);
         model.addAttribute("user", user);
-        List<UserLog> userLogs=userLogMapper.findByUser(userId);
+        List<UserLog> userLogs = userLogMapper.findByUser(userId);
         request.setAttribute("userLogList", userLogs);
         return "index/index";
     }
